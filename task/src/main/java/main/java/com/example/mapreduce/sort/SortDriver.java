@@ -21,11 +21,11 @@ import org.apache.hadoop.util.ToolRunner;
 
  You are given a very very large list of unsorted integers. These integers are supposed to be unique and, if sorted, contiguous. However, you suspect that this is not the case, so you want to write code to check for missing or duplicate integers. Write code to return these results:
 
- - Are there any missing or duplicate integers?
- - How many missing integers?
- - How many duplicate integers?
- - Which integers are missing?
- - Which integers are duplicates, and how many duplicates of each integer?
+ 1: Are there any missing or duplicate integers?
+ 2: How many missing integers?
+ 3: How many duplicate integers?
+ 4: Which integers are missing?
+ 5: Which integers are duplicates, and how many duplicates of each integer?
 
  You may write separate code or functions to answer each of these questions; i.e. it's ok to pass over the data more than once to answer all questions.
 

@@ -19,10 +19,13 @@ public class SortReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
     public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
         // Variable to track the number of duplicates
         int sum = 0;
+
         // Aggregate values to calculate the number of duplicates
         for (IntWritable value : values) {
             sum += value.get();
         }
+
+        // If sum > 1, the number is a duplicate if sum < 1, not a duplicate (Parts 1, 3, 5)
         context.write(key, new IntWritable(sum));
     }
 

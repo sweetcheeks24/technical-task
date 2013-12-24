@@ -23,10 +23,15 @@ public class FindMissingReducer extends Reducer<Text, IntWritable, Text, IntWrit
         while (pre_val != last_value) {
             // Aggregate values to calculate the number of duplicates
             System.out.println("Previous:" + pre_val);
+
+            // Identify which integers are missing (Part 4)
             context.write(new Text(String.valueOf(pre_val)), new IntWritable(1));
             pre_val += 1;
+
+            // Track the number of missing integers (Part 2)
+            context.getCounter("Integers", "Number-Missing").increment(1);
         }
-        pre_val = last_value;
+        pre_val = last_value + 1;
     }
 
 }
