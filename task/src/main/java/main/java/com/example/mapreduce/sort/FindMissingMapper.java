@@ -22,10 +22,7 @@ public class FindMissingMapper extends Mapper<LongWritable, Text, Text, IntWrita
     @Override
     public void map(LongWritable key, Text value, Context context) throws InterruptedException, IOException {
         String line = value.toString();
-        System.out.println(line);
-
         String[] items = line.split("\\W");
-
         word.set(items[0]);
         context.write(word, one);
     }

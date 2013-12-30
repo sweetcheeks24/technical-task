@@ -19,11 +19,7 @@ public class FindMissingReducer extends Reducer<Text, IntWritable, Text, IntWrit
     public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
         // Variable to track the last value
         int last_value = Integer.parseInt(key.toString());
-        System.out.println(pre_val + " : " + last_value);
         while (pre_val != last_value) {
-            // Aggregate values to calculate the number of duplicates
-            System.out.println("Previous:" + pre_val);
-
             // Identify which integers are missing (Part 4)
             context.write(new Text(String.valueOf(pre_val)), new IntWritable(1));
             pre_val += 1;

@@ -47,7 +47,6 @@ public class TestFindMissing {
 
     @Test
     public void testMapper() throws IOException {
-        System.out.println("Mapper");
         //input = 1, 2 10
         mapDriver.withInput(new LongWritable(1), new Text("10 1\n13 10"));
         //expected output = {"10", 1}, {"13", 1}
@@ -57,7 +56,6 @@ public class TestFindMissing {
 
     @Test
     public void testReducer() throws IOException {
-        System.out.println("Reducer:");
         //input = {"10", [1]}, {"13", [1]}
         List<IntWritable> values = new ArrayList<IntWritable>();
         values.add(new IntWritable(1));
@@ -80,10 +78,11 @@ public class TestFindMissing {
 
     @Test
     public void testMapReduce() throws IOException {
-        System.out.println("Map/Reduce:");
-        // input = 1, 10 1 \n 13 10
-        mapReduceDriver.withInput(new LongWritable(1), new Text("10 1\n13 10"));
-        // expected output = {"1", 1}, {"2", 1}, {"3", 1}, {"4", 1}, {"5", 1}, {"6", 1}, {"7", 1}, {"8", 1}, {"9", 1}, {"11", 1}, {"12", 1}
+//        System.out.println("Map/Reduce:");
+//        // input = 1, 10 1 \n 13 10
+        mapReduceDriver.withInput(new LongWritable(1), new Text("10 1"));
+        mapReduceDriver.withInput(new LongWritable(1), new Text("13 10"));
+//        // expected output = {"1", 1}, {"2", 1}, {"3", 1}, {"4", 1}, {"5", 1}, {"6", 1}, {"7", 1}, {"8", 1}, {"9", 1}, {"11", 1}, {"12", 1}
         mapReduceDriver.addOutput(new Text("1"), new IntWritable(1));
         mapReduceDriver.addOutput(new Text("2"), new IntWritable(1));
         mapReduceDriver.addOutput(new Text("3"), new IntWritable(1));
