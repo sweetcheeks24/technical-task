@@ -20,12 +20,13 @@ public class FindMissingReducer extends Reducer<Text, IntWritable, Text, IntWrit
         // Variable to track the last value
         int last_value = Integer.parseInt(key.toString());
         while (pre_val != last_value) {
-            // Identify which integers are missing (Part 4)
-            context.write(new Text(String.valueOf(pre_val)), new IntWritable(1));
-            pre_val += 1;
 
             // Track the number of missing integers (Part 2)
             context.getCounter("Integers", "Number-Missing").increment(1);
+
+            // Identify which integers are missing (Part 4)
+            context.write(new Text(String.valueOf(pre_val)), new IntWritable(1));
+            pre_val += 1;
         }
         pre_val = last_value + 1;
     }
